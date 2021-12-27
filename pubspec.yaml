@@ -20,10 +20,10 @@ dependencies:
   get: ^4.6.1
   hive: ^2.0.5
   hive_flutter: ^1.1.0
-  mapbox_search: ^3.0.1+2
+  mapbox_gl: ^0.14.0
 
   ## UI helper
-  flutter_svg: ^1.0.0
+  flutter_svg: ^0.23.0+1
   font_awesome_flutter: ^9.2.0
   bottom_navy_bar: ^6.0.0
   snapping_sheet: ^3.1.0

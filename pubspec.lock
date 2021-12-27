@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.0"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.6"
   args:
     dependency: transitive
     description:
@@ -227,9 +234,14 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.23.0+1"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -289,13 +301,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -310,6 +315,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   intl:
     dependency: transitive
     description:
@@ -352,13 +364,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  mapbox_search:
+  mapbox_gl:
     dependency: "direct main"
     description:
-      name: mapbox_search
+      name: mapbox_gl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1+2"
+    version: "0.14.0"
+  mapbox_gl_dart:
+    dependency: transitive
+    description:
+      name: mapbox_gl_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  mapbox_gl_platform_interface:
+    dependency: transitive
+    description:
+      name: mapbox_gl_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0"
+  mapbox_gl_web:
+    dependency: transitive
+    description:
+      name: mapbox_gl_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0"
   matcher:
     dependency: transitive
     description:
@@ -400,14 +433,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.5.1+1"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.2.1"
   path_provider:
     dependency: transitive
     description:

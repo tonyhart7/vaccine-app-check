@@ -8,4 +8,8 @@ class AppKey {
   // HiveBox key
   static const localUser = 'localUser';
   static const localTransaction = 'localData';
+
+  //MapBox Key
+  static const mapboxApiKey =
+      'pk.eyJ1IjoidG9ueWhhcnQ3IiwiYSI6ImNreG9hcHl1YjQ1MXcyd3BncHR6dTFuYmwifQ.i8WC8uaPInCelDBtjbeEcg';
 }

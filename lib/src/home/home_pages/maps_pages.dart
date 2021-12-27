@@ -1,7 +1,11 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
+import 'package:vaccine/src/utils/app_utils.dart';
 
 class MapsHomepages extends StatelessWidget {
   const MapsHomepages({Key? key}) : super(key: key);
@@ -32,16 +36,23 @@ class MapsHomepages extends StatelessWidget {
             grabbingContentOffset: GrabbingContentOffset.bottom,
           ),
         ],
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.redAccent,
-                height: 0.2.sh,
-                width: 0.4.sw,
-              ),
-            ],
-          ),
+        child: MapboxMap(
+          accessToken: AppKey.mapboxApiKey,
+          compassEnabled: true,
+          zoomGesturesEnabled: true,
+          scrollGesturesEnabled: true,
+          // ignore: prefer_collection_literals
+          gestureRecognizers: [
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
+            ),
+          ].toSet(),
+          initialCameraPosition: const CameraPosition(
+              zoom: 10,
+              target: LatLng(
+                -6.334905,
+                106.784117,
+              )),
         ),
         grabbingHeight: 20,
         grabbing: const Divider(
