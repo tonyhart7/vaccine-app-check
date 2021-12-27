@@ -47,7 +47,7 @@ class HomeView extends StatelessWidget {
             onItemSelected: (index) {
               controller.homeIndexPage = index;
               controller.homePageController.animateToPage(index,
-                  duration: const Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 400),
                   curve: Curves.fastOutSlowIn);
               controller.update();
             },
@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
               BottomNavyBarItem(
                 icon: const Icon(Icons.info_outlined),
                 title: const Text('Informasi'),
-                activeColor: Colors.grey,
+                activeColor: Colors.redAccent,
                 textAlign: TextAlign.center,
               ),
               BottomNavyBarItem(
@@ -67,7 +67,7 @@ class HomeView extends StatelessWidget {
               BottomNavyBarItem(
                 icon: const Icon(Icons.message),
                 title: const Text('Akun'),
-                activeColor: Colors.grey,
+                activeColor: Colors.blueAccent,
                 textAlign: TextAlign.center,
               ),
             ],

@@ -11,7 +11,17 @@ class InformationHomePages extends StatelessWidget {
     return SizedBox.expand(
       child: Column(
         children: [
-          SizedBox(height: 0.02.sh),
+          Align(
+            alignment: Alignment.topLeft,
+            child: ListTile(
+              leading: const Icon(Icons.info_outlined),
+              title: Text(
+                'Informasi',
+                style: AppStyle.textSubTitleBOLD,
+              ),
+            ),
+          ),
+          SizedBox(height: 0.01.sh),
           SizedBox(
             width: 0.9.sw,
             child: Column(

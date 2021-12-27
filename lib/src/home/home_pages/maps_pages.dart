@@ -10,12 +10,40 @@ class MapsHomepages extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: SnappingSheet(
-        child: Container(
-          color: Colors.redAccent,
-          height: 0.2.sh,
-          width: 0.4.sw,
+        initialSnappingPosition:
+            const SnappingPosition.factor(positionFactor: 0.3),
+        lockOverflowDrag: true,
+        snappingPositions: const [
+          SnappingPosition.factor(
+            positionFactor: 0.0,
+            snappingCurve: Curves.easeOutExpo,
+            snappingDuration: Duration(seconds: 1),
+            grabbingContentOffset: GrabbingContentOffset.top,
+          ),
+          SnappingPosition.pixels(
+            positionPixels: 400,
+            snappingCurve: Curves.elasticOut,
+            snappingDuration: Duration(milliseconds: 1750),
+          ),
+          SnappingPosition.factor(
+            positionFactor: 1.0,
+            snappingCurve: Curves.bounceOut,
+            snappingDuration: Duration(seconds: 1),
+            grabbingContentOffset: GrabbingContentOffset.bottom,
+          ),
+        ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.redAccent,
+                height: 0.2.sh,
+                width: 0.4.sw,
+              ),
+            ],
+          ),
         ),
-        grabbingHeight: 75,
+        grabbingHeight: 20,
         grabbing: const Divider(
           color: Colors.black26,
           thickness: 5,
@@ -24,11 +52,16 @@ class MapsHomepages extends StatelessWidget {
           endIndent: 180,
         ),
         sheetBelow: SnappingSheetContent(
-          draggable: true,
-          child: Container(
-            color: Colors.amber,
-            height: 0.2.sh,
-            width: 0.4.sw,
+          sizeBehavior: SheetSizeStatic(size: 200, expandOnOverflow: false),
+          child: Column(
+            children: [
+              SizedBox(height: 0.02.sh),
+              Container(
+                color: Colors.amber,
+                height: 0.2.sh,
+                width: 0.4.sw,
+              ),
+            ],
           ),
         ),
       ),
