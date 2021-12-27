@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vaccine/src/home/home_binding.dart';
+import 'package:vaccine/src/home/home_view.dart';
 
 import 'package:vaccine/src/utils/app_utils.dart';
 
@@ -127,7 +130,9 @@ class LoginView extends StatelessWidget {
               ),
               SizedBox(height: 0.04.sh),
               FloatingActionButton.extended(
-                onPressed: () {},
+                onPressed: () {
+                  Get.off(() => const HomeView(), binding: HomeBinding());
+                },
                 // icon: SvgPicture.asset(
                 //     'assets/images/icons/AuthViewIcon/facebook.svg',
                 //     height: 18.h),
