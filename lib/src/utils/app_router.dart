@@ -10,6 +10,8 @@ class AppRouter {
             return const SampleItemDetailsView();
           case HomeView.routeName:
             return const HomeView();
+          case RegistVaccinePage.routeName:
+            return const RegistVaccinePage();
           case LoginView.routeName:
           default:
             return const LoginView();

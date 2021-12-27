@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:vaccine/src/utils/app_utils.dart';
-
-import 'package:get/get.dart';
-
 import 'settings/settings_controller.dart';
+import 'authentication/auth_binding.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
             animation: settingsController,
             builder: (BuildContext context, Widget? child) {
               return GetMaterialApp(
+                initialBinding: AuthBinding(),
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,

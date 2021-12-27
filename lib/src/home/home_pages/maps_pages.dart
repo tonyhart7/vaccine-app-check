@@ -2,10 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
+
 import 'package:vaccine/src/utils/app_utils.dart';
+import 'package:vaccine/src/regist_vaccine/regist_binding.dart';
+import 'package:vaccine/src/regist_vaccine/regist_vaccine_view.dart';
 
 class MapsHomepages extends StatelessWidget {
   const MapsHomepages({Key? key}) : super(key: key);
@@ -15,7 +19,7 @@ class MapsHomepages extends StatelessWidget {
     return SizedBox.expand(
       child: SnappingSheet(
         initialSnappingPosition:
-            const SnappingPosition.factor(positionFactor: 0.3),
+            const SnappingPosition.factor(positionFactor: 0.35),
         lockOverflowDrag: true,
         snappingPositions: const [
           SnappingPosition.factor(
@@ -25,7 +29,7 @@ class MapsHomepages extends StatelessWidget {
             grabbingContentOffset: GrabbingContentOffset.top,
           ),
           SnappingPosition.pixels(
-            positionPixels: 400,
+            positionPixels: 200,
             snappingCurve: Curves.elasticOut,
             snappingDuration: Duration(milliseconds: 1750),
           ),
@@ -41,12 +45,11 @@ class MapsHomepages extends StatelessWidget {
           compassEnabled: true,
           zoomGesturesEnabled: true,
           scrollGesturesEnabled: true,
-          // ignore: prefer_collection_literals
-          gestureRecognizers: [
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
             Factory<OneSequenceGestureRecognizer>(
               () => EagerGestureRecognizer(),
             ),
-          ].toSet(),
+          },
           initialCameraPosition: const CameraPosition(
               zoom: 10,
               target: LatLng(
@@ -54,10 +57,10 @@ class MapsHomepages extends StatelessWidget {
                 106.784117,
               )),
         ),
-        grabbingHeight: 20,
+        grabbingHeight: 60,
         grabbing: const Divider(
           color: Colors.black26,
-          thickness: 5,
+          thickness: 8,
           height: 20,
           indent: 180,
           endIndent: 180,
@@ -66,11 +69,150 @@ class MapsHomepages extends StatelessWidget {
           sizeBehavior: SheetSizeStatic(size: 200, expandOnOverflow: false),
           child: Column(
             children: [
+              // SizedBox(height: 0.02.sh),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => const RegistVaccinePage(),
+                          binding: RegistBinding());
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      height: 0.1.sh,
+                      width: 0.28.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.family_restroom_rounded,
+                            size: 30.h,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              'Lapor Vaksin',
+                              overflow: TextOverflow.fade,
+                              style: AppStyle.smallText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      height: 0.1.sh,
+                      width: 0.28.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.medical_services_outlined,
+                            size: 30.h,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              'Data Vaksin',
+                              overflow: TextOverflow.fade,
+                              style: AppStyle.smallText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      height: 0.1.sh,
+                      width: 0.28.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.location_on_outlined,
+                            size: 30.h,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              'Vaksin Terdekat',
+                              overflow: TextOverflow.fade,
+                              style: AppStyle.smallText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 0.02.sh),
-              Container(
-                color: Colors.amber,
-                height: 0.2.sh,
-                width: 0.4.sw,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      height: 0.1.sh,
+                      width: 0.28.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.masks_outlined,
+                            size: 30.h,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              'Tips Pencegahan',
+                              overflow: TextOverflow.fade,
+                              style: AppStyle.smallText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white),
+                      height: 0.1.sh,
+                      width: 0.28.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.family_restroom_outlined,
+                            size: 30.h,
+                          ),
+                          FittedBox(
+                            child: Text(
+                              'Kasus Covid-19',
+                              overflow: TextOverflow.fade,
+                              style: AppStyle.smallText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
