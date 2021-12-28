@@ -7,7 +7,7 @@ class AppKey {
 
   // HiveBox key
   static const localUser = 'localUser';
-  static const localTransaction = 'localData';
+  static const localData = 'localData';
 
   //MapBox Key
   static const mapboxApiKey =

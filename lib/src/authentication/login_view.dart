@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:vaccine/src/home/home_binding.dart';
-import 'package:vaccine/src/home/home_view.dart';
 
 import 'package:vaccine/src/utils/app_utils.dart';
 
 import 'auth_controller.dart';
+import 'register_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class LoginView extends StatelessWidget {
     return GetBuilder<AuthController>(
       init: AuthController(),
       initState: (_) {},
-      builder: (_) {
+      builder: (controller) {
         return Scaffold(
           appBar: AppBar(
             title: Text(
@@ -55,7 +54,15 @@ class LoginView extends StatelessWidget {
                               style: AppStyle.textSubTitle,
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                FocusScopeNode currentFocus =
+                                    FocusScope.of(context);
+
+                                if (!currentFocus.hasPrimaryFocus) {
+                                  currentFocus.unfocus();
+                                }
+                                Get.to(() => const RegisterView());
+                              },
                               child: Text(
                                 'Register',
                                 style: TextStyle(
@@ -74,7 +81,7 @@ class LoginView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Username / Email',
+                                'Email',
                                 style: AppStyle.textBody,
                               ),
                             ),
@@ -86,7 +93,7 @@ class LoginView extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  // controller: controller.detailRecord,
+                                  controller: controller.emailORNumber,
                                   keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.all(16.0),
@@ -118,7 +125,7 @@ class LoginView extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  // controller: controller.detailRecord,
+                                  controller: controller.passText,
                                   keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.all(16.0),
@@ -137,7 +144,12 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: 0.04.sh),
                   FloatingActionButton.extended(
                     onPressed: () {
-                      Get.off(() => const HomeView(), binding: HomeBinding());
+                      controller.loginUser();
+                      FocusScopeNode currentFocus = FocusScope.of(context);
+
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
                     },
                     // icon: SvgPicture.asset(
                     //     'assets/images/icons/AuthViewIcon/facebook.svg',
@@ -149,6 +161,7 @@ class LoginView extends StatelessWidget {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
+                  SizedBox(height: 0.05.sh),
                 ],
               ),
             ),

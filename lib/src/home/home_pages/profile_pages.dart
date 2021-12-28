@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:vaccine/src/authentication/auth_controller.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
 class ProfileHomePages extends StatelessWidget {
@@ -29,25 +31,31 @@ class ProfileHomePages extends StatelessWidget {
                     radius: 40.h,
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FittedBox(
-                      child: Text(
-                        'Nama Pengguna',
-                        style: AppStyle.textSubTitleBOLD,
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
-                    SizedBox(height: 0.005.sh),
-                    FittedBox(
-                      child: Text(
-                        'Nomor Telepon / Email',
-                        style: AppStyle.textBody,
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
-                  ],
+                GetBuilder<AuthController>(
+                  init: AuthController(),
+                  initState: (_) {},
+                  builder: (controller) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                            controller.currentUser.name,
+                            style: AppStyle.textSubTitleBOLD,
+                            overflow: TextOverflow.fade,
+                          ),
+                        ),
+                        SizedBox(height: 0.005.sh),
+                        FittedBox(
+                          child: Text(
+                            controller.currentUser.email,
+                            style: AppStyle.textBody,
+                            overflow: TextOverflow.fade,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 Center(
                   child: IconButton(
