@@ -18,6 +18,8 @@ class RegistVaccine extends HiveObject {
   final String district;
   @HiveField(5)
   final String fullAddress;
+  @HiveField(6)
+  final DateTime timeStamp;
 
   RegistVaccine({
     required this.id,
@@ -26,6 +28,7 @@ class RegistVaccine extends HiveObject {
     required this.city,
     required this.district,
     required this.fullAddress,
+    required this.timeStamp,
   });
 
   RegistVaccine copyWith({
@@ -35,6 +38,7 @@ class RegistVaccine extends HiveObject {
     String? city,
     String? district,
     String? fullAddress,
+    DateTime? timeStamp,
   }) {
     return RegistVaccine(
       id: id ?? this.id,
@@ -43,6 +47,7 @@ class RegistVaccine extends HiveObject {
       city: city ?? this.city,
       district: district ?? this.district,
       fullAddress: fullAddress ?? this.fullAddress,
+      timeStamp: timeStamp ?? this.timeStamp,
     );
   }
 
@@ -54,6 +59,7 @@ class RegistVaccine extends HiveObject {
       'city': city,
       'district': district,
       'fullAddress': fullAddress,
+      'timeStamp': timeStamp.millisecondsSinceEpoch,
     };
   }
 
@@ -65,6 +71,7 @@ class RegistVaccine extends HiveObject {
       city: map['city'] ?? '',
       district: map['district'] ?? '',
       fullAddress: map['fullAddress'] ?? '',
+      timeStamp: DateTime.fromMillisecondsSinceEpoch(map['timeStamp']),
     );
   }
 
@@ -75,7 +82,7 @@ class RegistVaccine extends HiveObject {
 
   @override
   String toString() {
-    return 'RegistVaccine(id: $id, passportNumber: $passportNumber, state: $state, city: $city, district: $district, fullAddress: $fullAddress)';
+    return 'RegistVaccine(id: $id, passportNumber: $passportNumber, state: $state, city: $city, district: $district, fullAddress: $fullAddress, timeStamp: $timeStamp)';
   }
 
   @override
@@ -88,7 +95,8 @@ class RegistVaccine extends HiveObject {
         other.state == state &&
         other.city == city &&
         other.district == district &&
-        other.fullAddress == fullAddress;
+        other.fullAddress == fullAddress &&
+        other.timeStamp == timeStamp;
   }
 
   @override
@@ -98,6 +106,7 @@ class RegistVaccine extends HiveObject {
         state.hashCode ^
         city.hashCode ^
         district.hashCode ^
-        fullAddress.hashCode;
+        fullAddress.hashCode ^
+        timeStamp.hashCode;
   }
 }

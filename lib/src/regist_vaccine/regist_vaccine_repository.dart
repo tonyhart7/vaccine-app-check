@@ -22,6 +22,7 @@ class RegistVaccineRepository {
       city: city,
       district: district,
       fullAddress: fullAddress,
+      timeStamp: DateTime.now(),
     );
     localRegist.add(newRegistraion);
     Get.rawSnackbar(message: 'Berhasil Verifikasi');

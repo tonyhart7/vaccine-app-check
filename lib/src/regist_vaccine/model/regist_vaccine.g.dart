@@ -23,13 +23,14 @@ class RegistVaccineAdapter extends TypeAdapter<RegistVaccine> {
       city: fields[3] as String,
       district: fields[4] as String,
       fullAddress: fields[5] as String,
+      timeStamp: fields[6] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, RegistVaccine obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class RegistVaccineAdapter extends TypeAdapter<RegistVaccine> {
       ..writeByte(4)
       ..write(obj.district)
       ..writeByte(5)
-      ..write(obj.fullAddress);
+      ..write(obj.fullAddress)
+      ..writeByte(6)
+      ..write(obj.timeStamp);
   }
 
   @override

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:vaccine/src/information_home_pages/statistic_view.dart';
+
+import 'package:vaccine/src/information_home_pages/tips_view.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
 class InformationHomePages extends StatelessWidget {
@@ -50,6 +54,9 @@ class InformationHomePages extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: ListTile(
+                    onTap: () {
+                      Get.to(() => const StatisticView());
+                    },
                     title: Text(
                       'Kasus Covid-19',
                       style: AppStyle.textSubTitleBOLD,
@@ -60,6 +67,9 @@ class InformationHomePages extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   child: ListTile(
+                    onTap: () {
+                      Get.to(() => const Tips());
+                    },
                     title: Text(
                       'Tips Pencegahan Covid-19',
                       style: AppStyle.textSubTitleBOLD,

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -31,15 +32,21 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
       initState: (_) {},
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Text(
+              'Data Vaksin',
+              style: AppStyle.textTitle,
+            ),
+          ),
           body: controller.tmpList.isNotEmpty
               ? ListView.builder(
                   itemCount: controller.tmpList.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text(authCntrl.currentUser.name),
-                      subtitle: Text(controller.tmpList[index].passportNumber),
-                      trailing: Text(controller.tmpList[index].district),
+                      subtitle: Text(controller.tmpList[index].fullAddress),
+                      trailing: Text(DateFormat.yMMMMd()
+                          .format(controller.tmpList[index].timeStamp)),
                     );
                   },
                 )
