@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:vaccine/src/authentication/auth_controller.dart';
+import 'package:vaccine/src/authentication/login_view.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
 class ProfileHomePages extends StatelessWidget {
@@ -76,12 +77,18 @@ class ProfileHomePages extends StatelessWidget {
             child: Column(
               children: [
                 const Divider(),
-                ListTile(
-                  leading: const Icon(Icons.person_outline_outlined),
-                  title: Text(
-                    'Status: Tervaksin',
-                    style: AppStyle.textSubTitle,
-                  ),
+                GetBuilder<AuthController>(
+                  init: AuthController(),
+                  initState: (_) {},
+                  builder: (controller) {
+                    return ListTile(
+                      leading: const Icon(Icons.person_outline_outlined),
+                      title: Text(
+                        controller.currentUser.status,
+                        style: AppStyle.textSubTitle,
+                      ),
+                    );
+                  },
                 ),
                 const Divider(),
                 ListTile(
@@ -101,6 +108,7 @@ class ProfileHomePages extends StatelessWidget {
                 ),
                 const Divider(),
                 ListTile(
+                  onTap: () => Get.offAll(() => const LoginView()),
                   leading: const Icon(Icons.logout_outlined),
                   title: Text(
                     'Keluar',

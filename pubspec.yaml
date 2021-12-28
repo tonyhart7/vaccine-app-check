@@ -23,7 +23,7 @@ dependencies:
   mapbox_gl: ^0.14.0
 
   ## UI helper
-  flutter_svg: ^0.23.0+1
+  flutter_svg: ^1.0.0
   font_awesome_flutter: ^9.2.0
   bottom_navy_bar: ^6.0.0
   snapping_sheet: ^3.1.0
