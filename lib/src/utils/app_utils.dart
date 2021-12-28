@@ -11,6 +11,7 @@ import 'package:vaccine/src/home/home_view.dart';
 
 // App Database ( Hive ) Import
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:vaccine/src/regist_vaccine/model/regist_vaccine.dart';
 import 'package:vaccine/src/authentication/model/user.dart';
 
 part 'app_key.dart';

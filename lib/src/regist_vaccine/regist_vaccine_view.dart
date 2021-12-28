@@ -5,6 +5,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:vaccine/src/authentication/auth_controller.dart';
+import 'package:vaccine/src/authentication/auth_repository.dart';
 import 'package:vaccine/src/regist_vaccine/regist_constant.dart';
 import 'package:vaccine/src/regist_vaccine/regist_controller.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
@@ -209,6 +210,8 @@ class RegistVaccinePage extends StatelessWidget {
                           alignment: Alignment.center,
                           child: FloatingActionButton.extended(
                             onPressed: () {
+                              controller
+                                  .registVaccine(authCntrl.currentUser.name);
                               FocusScopeNode currentFocus =
                                   FocusScope.of(context);
 

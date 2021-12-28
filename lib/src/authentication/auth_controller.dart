@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:vaccine/src/authentication/auth_repository.dart';
-
 import 'model/user.dart';
+import 'auth_repository.dart';
 
 class AuthController extends GetxController {
   // @override

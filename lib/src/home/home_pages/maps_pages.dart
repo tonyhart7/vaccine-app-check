@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
+import 'package:vaccine/src/regist_vaccine/regist_vaccine_list.dart';
 
 import 'package:vaccine/src/utils/app_utils.dart';
 import 'package:vaccine/src/regist_vaccine/regist_binding.dart';
@@ -103,7 +104,10 @@ class MapsHomepages extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => const RegistVaccineList(),
+                          binding: RegistBinding());
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
