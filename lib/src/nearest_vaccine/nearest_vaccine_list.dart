@@ -7,6 +7,8 @@ import 'package:snapping_sheet/snapping_sheet.dart';
 
 import 'package:vaccine/src/utils/app_utils.dart';
 
+import 'nearest_vaccine_item.dart';
+
 class NearestVaccineList extends StatelessWidget {
   const NearestVaccineList({Key? key}) : super(key: key);
 
@@ -68,6 +70,10 @@ class NearestVaccineList extends StatelessWidget {
           height: 20,
           indent: 180,
           endIndent: 180,
+        ),
+        sheetBelow: SnappingSheetContent(
+          sizeBehavior: SheetSizeStatic(size: 200, expandOnOverflow: true),
+          child: const NearestVaccineItemList(),
         ),
       ),
     );

@@ -50,6 +50,14 @@ class RegistController extends GetxController {
       Get.rawSnackbar(message: 'mohon lengkap alamat sesusai ktp/passport');
       return;
     }
+    if (fulladdressText.text.length < 12) {
+      Get.rawSnackbar(message: 'mohon masukkan alamat yang lengkap');
+      return;
+    }
+    if (passportText.text.length < 9) {
+      Get.rawSnackbar(message: 'Nomor tanda penduduk tidak valid');
+      return;
+    }
 
     RegistVaccineRepository().registVaccine(
       id,

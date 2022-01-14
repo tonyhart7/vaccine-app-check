@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:vaccine/src/authentication/auth_controller.dart';
@@ -32,30 +33,179 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
       initState: (_) {},
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Data Vaksin',
-              style: AppStyle.textTitle,
+            appBar: AppBar(
+              title: Text(
+                'Data Vaksin',
+                style: AppStyle.textTitle,
+              ),
             ),
-          ),
-          body: controller.tmpList.isNotEmpty
-              ? ListView.builder(
-                  itemCount: controller.tmpList.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(authCntrl.currentUser.name),
-                      subtitle: Text(controller.tmpList[index].fullAddress),
-                      trailing: Text(DateFormat.yMMMMd()
-                          .format(controller.tmpList[index].timeStamp)),
-                    );
-                  },
-                )
-              : Center(
-                  child: Text(
-                  'No data',
-                  style: AppStyle.textBig,
-                )),
-        );
+            body: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.redAccent,
+                          ),
+                          borderRadius: BorderRadius.circular(18)),
+                      height: 0.2.sh,
+                      width: 0.9.sw,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            'Jumlah Penduduk di kelurahan',
+                            style: AppStyle.textSubTitle,
+                          ),
+                          Text(
+                            'Tercatat 1530 orang',
+                            style: AppStyle.textSubTitle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Laki laki: 898',
+                                style: AppStyle.textSubTitle,
+                              ),
+                              Text(
+                                'Perempuan 632',
+                                style: AppStyle.textSubTitle,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 0.04.sh),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SizedBox(
+                            height: 0.15.sh,
+                            width: 0.4.sw,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Jumlah Terlapor',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                                Text(
+                                  'Tercatat: 985 orang',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SizedBox(
+                            height: 0.15.sh,
+                            width: 0.4.sw,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Jumlah Belum Terlapor',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                                Text(
+                                  'Tercatat: 545 orang',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SizedBox(
+                            height: 0.15.sh,
+                            width: 0.4.sw,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Jumlah yang sudah terlapor vaksin',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                                Text(
+                                  'Tercatat: 783 orang',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SizedBox(
+                            height: 0.15.sh,
+                            width: 0.4.sw,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Jumlah yang Belum Terlapor vaksin',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                                Text(
+                                  'Tercatat: 202 orang',
+                                  style: AppStyle.textSubTitle,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 0.04.sh),
+                    SingleChildScrollView(
+                      child: SizedBox(
+                        height: 0.2.sh,
+                        width: 0.9.sw,
+                        child: controller.tmpList.isNotEmpty
+                            ? ListView.builder(
+                                itemCount: controller.tmpList.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: Text(authCntrl.currentUser.name),
+                                    subtitle: Text(
+                                        controller.tmpList[index].fullAddress),
+                                    trailing: Text(DateFormat.yMMMMd().format(
+                                        controller.tmpList[index].timeStamp)),
+                                  );
+                                },
+                              )
+                            : Center(
+                                child: Text(
+                                'No data',
+                                style: AppStyle.textBig,
+                              )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ));
       },
     );
   }
