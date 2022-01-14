@@ -11,7 +11,8 @@ class AppRouter {
           case HomeView.routeName:
             return const HomeView();
           case RegistVaccinePage.routeName:
-            return const RegistVaccinePage();
+          case NearestVaccineList.routeName:
+            return const NearestVaccineList();
           case LoginView.routeName:
           default:
             return const LoginView();

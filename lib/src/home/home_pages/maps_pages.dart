@@ -8,6 +8,7 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:vaccine/src/information_home_pages/statistic_view.dart';
 import 'package:vaccine/src/information_home_pages/tips_view.dart';
+import 'package:vaccine/src/nearest_vaccine/nearest_vaccine_list.dart';
 import 'package:vaccine/src/regist_vaccine/regist_vaccine_list.dart';
 
 import 'package:vaccine/src/utils/app_utils.dart';
@@ -135,7 +136,9 @@ class MapsHomepages extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => const NearestVaccineList());
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
