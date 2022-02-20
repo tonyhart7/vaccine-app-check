@@ -180,14 +180,15 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                     SizedBox(height: 0.04.sh),
                     SingleChildScrollView(
                       child: SizedBox(
-                        height: 0.2.sh,
+                        height: 0.6.sh,
                         width: 0.9.sw,
                         child: controller.tmpList.isNotEmpty
                             ? ListView.builder(
                                 itemCount: controller.tmpList.length,
                                 itemBuilder: (context, index) {
                                   return ListTile(
-                                    title: Text(authCntrl.currentUser.name),
+                                    title: Text(controller
+                                        .tmpList[index].passportNumber),
                                     subtitle: Text(
                                         controller.tmpList[index].fullAddress),
                                     trailing: Text(DateFormat.yMMMMd().format(
@@ -202,6 +203,7 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                               )),
                       ),
                     ),
+                    SizedBox(height: 0.04.sh),
                   ],
                 ),
               ),
