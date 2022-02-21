@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:vaccine/src/authentication/auth_controller.dart';
 import 'package:vaccine/src/authentication/login_view.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
+
+import 'profile_controller.dart';
 
 class ProfileHomePages extends StatelessWidget {
   const ProfileHomePages({Key? key}) : super(key: key);
 
+  ProfileController get profContrl => Get.find();
+
   @override
   Widget build(BuildContext context) {
+    profContrl.getCurrentUser();
     return SizedBox.expand(
       child: Column(
         children: [
@@ -32,31 +36,21 @@ class ProfileHomePages extends StatelessWidget {
                     radius: 40.h,
                   ),
                 ),
-                GetBuilder<AuthController>(
-                  init: AuthController(),
-                  initState: (_) {},
-                  builder: (controller) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FittedBox(
-                          child: Text(
-                            controller.currentUser.name,
-                            style: AppStyle.textSubTitleBOLD,
-                            overflow: TextOverflow.fade,
-                          ),
-                        ),
-                        SizedBox(height: 0.005.sh),
-                        FittedBox(
-                          child: Text(
-                            controller.currentUser.email,
-                            style: AppStyle.textBody,
-                            overflow: TextOverflow.fade,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Obx(() => Text(
+                          profContrl.currentUser.value?.names ?? 'No Name',
+                          style: AppStyle.textSubTitleBOLD,
+                          overflow: TextOverflow.fade,
+                        )),
+                    SizedBox(height: 0.005.sh),
+                    Obx(() => Text(
+                          profContrl.currentUser.value?.email ?? "Please Login",
+                          style: AppStyle.textBody,
+                          overflow: TextOverflow.fade,
+                        )),
+                  ],
                 ),
                 Center(
                   child: IconButton(
@@ -77,19 +71,14 @@ class ProfileHomePages extends StatelessWidget {
             child: Column(
               children: [
                 const Divider(),
-                GetBuilder<AuthController>(
-                  init: AuthController(),
-                  initState: (_) {},
-                  builder: (controller) {
-                    return ListTile(
+                Obx(() => ListTile(
                       leading: const Icon(Icons.person_outline_outlined),
                       title: Text(
-                        controller.currentUser.status,
+                        profContrl.currentUser.value?.username ??
+                            'Please Login ',
                         style: AppStyle.textSubTitle,
                       ),
-                    );
-                  },
-                ),
+                    )),
                 const Divider(),
                 ListTile(
                   leading: const Icon(Icons.privacy_tip_outlined),

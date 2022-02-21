@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vaccine/src/authentication/login_view.dart';
+import 'package:vaccine/src/home/home_binding.dart';
+import 'package:vaccine/src/home/home_pages/profile_controller.dart';
+import 'package:vaccine/src/home/home_view.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
-import 'model/user.dart';
 import 'auth_repository.dart';
 
 class AuthController extends GetxController {
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
-  late User currentUser;
+  ProfileController get profContrl => Get.find();
 
   final username = TextEditingController();
   final passText = TextEditingController();
@@ -28,16 +26,20 @@ class AuthController extends GetxController {
       return;
     }
 
-    String? message =
+    AppErrorHandler? response =
         await AuthRepository().loginUser(emailORNumber.text, passText.text);
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: Text(message!, style: AppStyle.textBodyWhite),
+          content: Text(response!.message!, style: AppStyle.textBodyWhite),
           backgroundColor: Colors.red,
         ),
       );
+    if (response.status == "success") {
+      profContrl.currendUserID = response.userID;
+      Get.offAll(() => const HomeView(), binding: HomeBinding());
+    }
   }
 
   registerUser(BuildContext context) async {
@@ -54,18 +56,21 @@ class AuthController extends GetxController {
       return;
     }
 
-    String? message = await AuthRepository()
+    AppErrorHandler? response = await AuthRepository()
         .registUser(username.text, emailORNumber.text, passText.text);
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: Text(message!, style: AppStyle.textBodyWhite),
+          content: Text(response!.message!, style: AppStyle.textBodyWhite),
           backgroundColor: Colors.red,
         ),
       );
-    username.clear();
-    emailORNumber.clear();
-    passText.clear();
+    if (response.status == "success") {
+      username.clear();
+      emailORNumber.clear();
+      passText.clear();
+      Get.to(() => const LoginView());
+    }
   }
 }

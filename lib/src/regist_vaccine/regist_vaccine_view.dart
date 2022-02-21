@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:vaccine/src/authentication/auth_controller.dart';
+import 'package:vaccine/src/home/home_pages/profile_controller.dart';
 import 'package:vaccine/src/regist_vaccine/regist_constant.dart';
 import 'package:vaccine/src/regist_vaccine/regist_controller.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
@@ -39,10 +39,10 @@ class RegistVaccinePage extends StatelessWidget {
                             style: AppStyle.textBody,
                           ),
                         ),
-                        GetBuilder<AuthController>(
-                          init: AuthController(),
+                        GetBuilder<ProfileController>(
+                          init: ProfileController(),
                           initState: (_) {},
-                          builder: (auth) {
+                          builder: (prof) {
                             return Card(
                               color: Colors.grey[350],
                               shape: RoundedRectangleBorder(
@@ -51,7 +51,7 @@ class RegistVaccinePage extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  initialValue: auth.currentUser.name,
+                                  initialValue: prof.currentUser.value?.names,
                                   enabled: false,
                                   keyboardType: TextInputType.none,
                                   decoration: const InputDecoration(
