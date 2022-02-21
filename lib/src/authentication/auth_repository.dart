@@ -1,51 +1,50 @@
-import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:dio/dio.dart';
+
 import 'package:vaccine/src/utils/app_utils.dart';
 
-import 'package:vaccine/src/authentication/model/user.dart';
-
-import 'package:vaccine/src/home/home_view.dart';
-import 'package:vaccine/src/home/home_binding.dart';
-
-import 'auth_controller.dart';
-
-final localUser = Hive.box<User>(AppKey.localUser);
-AuthController get authCntrl => Get.find();
-
 class AuthRepository {
-  void registUser(
-    String nameUser,
+  Future<String?> registUser(
+    String userName,
     String emailUser,
     String passwdUser,
   ) async {
-    final newUser = User(
-      id: DateTime.now().toString(),
-      name: nameUser,
-      email: emailUser,
-      password: passwdUser,
-      status: 'BELUM VAKSIN',
-    );
-    authCntrl.currentUser = newUser;
-    localUser.add(newUser);
-    Get.rawSnackbar(message: 'Berhasil Daftar');
-    Get.off(() => const HomeView(), binding: HomeBinding());
+    var formData = FormData.fromMap({
+      'username': userName,
+      'email': emailUser,
+      'password': passwdUser,
+    });
+    try {
+      var response =
+          await Dio().post(DataServices().baseUrl + "api/user", data: formData);
+      if (response.statusCode == 200) {
+        return AppErrorHandler.fromMap(response.data).message;
+      } else {
+        return AppErrorHandler.fromMap(response.data).message;
+      }
+    } on DioError catch (e) {
+      return AppErrorHandler.fromMap(e.response?.data).message;
+    }
   }
 
-  Future loginUser(
-    String emailUser,
+  Future<String?> loginUser(
+    String username,
     String passwdUser,
   ) async {
-    List<User> _users = localUser.values.toList();
-    for (User user in _users) {
-      if (user.email == emailUser && user.password == passwdUser) {
-        authCntrl.currentUser = user;
-        Get.off(() => const HomeView(), binding: HomeBinding());
-        break;
+    FormData formData = FormData.fromMap({
+      'identity': username,
+      'password': passwdUser,
+    });
+    try {
+      var response = await Dio()
+          .post(DataServices().baseUrl + "api/auth/login", data: formData);
+      if (response.statusCode == 200) {
+        await DataServices().setAccessKey(response.data['data']);
+        return AppErrorHandler.fromMap(response.data).message;
       } else {
-        Get.rawSnackbar(
-            message:
-                'Email atau Password salah, silahkan coba lagi atau daftar baru');
+        return AppErrorHandler.fromMap(response.data).message;
       }
+    } on DioError catch (e) {
+      return AppErrorHandler.fromMap(e.response?.data).message;
     }
   }
 }

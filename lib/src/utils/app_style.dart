@@ -35,6 +35,10 @@ class AppStyle {
     fontSize: 14.sp,
     color: Colors.black,
   );
+  static TextStyle textBodyWhite = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.white,
+  );
   static TextStyle textBodyBOLD = TextStyle(
     fontSize: 14.sp,
     color: Colors.black,

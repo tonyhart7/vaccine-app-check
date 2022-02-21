@@ -39,7 +39,7 @@ class RegisterView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Nama Lengkap',
+                                'Username: ',
                                 style: AppStyle.textBody,
                               ),
                             ),
@@ -51,7 +51,7 @@ class RegisterView extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  controller: controller.nameText,
+                                  controller: controller.username,
                                   keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.all(16.0),
@@ -137,7 +137,7 @@ class RegisterView extends StatelessWidget {
                   SizedBox(
                     child: FloatingActionButton.extended(
                       onPressed: () {
-                        controller.registerUser();
+                        controller.registerUser(context);
                         FocusScopeNode currentFocus = FocusScope.of(context);
 
                         if (!currentFocus.hasPrimaryFocus) {

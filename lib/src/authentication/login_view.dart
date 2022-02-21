@@ -64,7 +64,7 @@ class LoginView extends StatelessWidget {
                                 Get.to(() => const RegisterView());
                               },
                               child: Text(
-                                'Register',
+                                'Regist',
                                 style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
@@ -81,7 +81,7 @@ class LoginView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                'Email',
+                                'Username',
                                 style: AppStyle.textBody,
                               ),
                             ),
@@ -93,7 +93,7 @@ class LoginView extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  controller: controller.emailORNumber,
+                                  controller: controller.username,
                                   keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.all(16.0),
@@ -144,7 +144,7 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: 0.04.sh),
                   FloatingActionButton.extended(
                     onPressed: () {
-                      controller.loginUser();
+                      controller.loginUser(context);
                       FocusScopeNode currentFocus = FocusScope.of(context);
 
                       if (!currentFocus.hasPrimaryFocus) {
@@ -161,7 +161,7 @@ class LoginView extends StatelessWidget {
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                   ),
-                  SizedBox(height: 0.05.sh),
+                  SizedBox(height: 0.1.sh),
                 ],
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vaccine/src/utils/app_utils.dart';
 
 import 'model/user.dart';
 import 'auth_repository.dart';
@@ -13,30 +14,39 @@ class AuthController extends GetxController {
 
   late User currentUser;
 
-  final nameText = TextEditingController();
+  final username = TextEditingController();
   final passText = TextEditingController();
   final emailORNumber = TextEditingController();
 
-  loginUser() {
-    if (emailORNumber.text.isEmpty) {
-      Get.rawSnackbar(message: 'Email Kosong');
+  loginUser(BuildContext context) async {
+    if (username.text.isEmpty) {
+      Get.rawSnackbar(message: 'username tidak boleh kosong');
       return;
     }
     if (passText.text.isEmpty) {
-      Get.rawSnackbar(message: 'Password Kosong');
+      Get.rawSnackbar(message: 'password tidak boleh kosong');
       return;
     }
 
-    AuthRepository().loginUser(emailORNumber.text, passText.text);
+    String? message =
+        await AuthRepository().loginUser(emailORNumber.text, passText.text);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message!, style: AppStyle.textBodyWhite),
+          backgroundColor: Colors.red,
+        ),
+      );
   }
 
-  registerUser() {
+  registerUser(BuildContext context) async {
     if (emailORNumber.text.isEmpty) {
       Get.rawSnackbar(message: 'Email Kosong');
       return;
     }
-    if (nameText.text.isEmpty) {
-      Get.rawSnackbar(message: 'Isi Nama dahulu');
+    if (username.text.isEmpty) {
+      Get.rawSnackbar(message: 'username invalid');
       return;
     }
     if (passText.text.isEmpty) {
@@ -44,10 +54,18 @@ class AuthController extends GetxController {
       return;
     }
 
-    AuthRepository().registUser(
-      nameText.text,
-      emailORNumber.text,
-      passText.text,
-    );
+    String? message = await AuthRepository()
+        .registUser(username.text, emailORNumber.text, passText.text);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message!, style: AppStyle.textBodyWhite),
+          backgroundColor: Colors.red,
+        ),
+      );
+    username.clear();
+    emailORNumber.clear();
+    passText.clear();
   }
 }

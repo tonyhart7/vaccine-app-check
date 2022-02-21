@@ -1,13 +1,12 @@
 part of 'app_utils.dart';
 
 class AppKey {
-  // GetStorage Key
-  static const isDarkmode = 'themeMode';
-  static const isFirstLaunch = 'firstLaunch';
-
   // HiveBox key
   static const localUser = 'localUser';
   static const localData = 'localData';
+
+  // backendURL
+  static const serverURL = 'https://d6fb-157-245-62-44.ngrok.io/';
 
   //MapBox Key
   static const mapboxApiKey =

@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // App Router Import
 import 'package:vaccine/src/sample_feature/sample_item_details_view.dart';
@@ -23,3 +26,5 @@ part 'app_style.dart';
 part 'app_theme_data.dart';
 part 'app_database.dart';
 part 'app_sheet.dart';
+part 'app_data_service.dart';
+part 'app_error_handler.dart';
