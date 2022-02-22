@@ -16,7 +16,7 @@ class RegistController extends GetxController {
   AuthController get authCntrl => Get.find();
   bool isVaccinated = false;
 
-  RxList<RecordVaccine?> listRecord = <RecordVaccine?>[].obs;
+  RxList<VaccineData?> listRecord = <VaccineData?>[].obs;
 
   List<RegistVaccine> tmpList = [];
 
@@ -85,11 +85,12 @@ class RegistController extends GetxController {
     }
   }
 
-  loadListRegist() {
-    bool storedRegist = localRegist.length != 0;
-
-    if (storedRegist) {
-      tmpList = localRegist.values.toList();
+  loadListRegist() async {
+    List<VaccineData>? response =
+        await RegistVaccineRepository().getRecordVaccine();
+    if (response != null) {
+      listRecord.clear();
+      listRecord.addAll(response);
     }
   }
 }

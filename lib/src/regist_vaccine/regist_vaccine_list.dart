@@ -179,29 +179,33 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                     ),
                     SizedBox(height: 0.04.sh),
                     SingleChildScrollView(
-                      child: SizedBox(
-                        height: 0.6.sh,
-                        width: 0.9.sw,
-                        child: controller.tmpList.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: controller.tmpList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    title: Text(controller
-                                        .tmpList[index].passportNumber),
-                                    subtitle: Text(
-                                        controller.tmpList[index].fullAddress),
-                                    trailing: Text(DateFormat.yMMMMd().format(
-                                        controller.tmpList[index].timeStamp)),
-                                  );
-                                },
-                              )
-                            : Center(
-                                child: Text(
-                                'No data',
-                                style: AppStyle.textBig,
-                              )),
-                      ),
+                      child: Obx(() => SizedBox(
+                            height: 0.6.sh,
+                            width: 0.9.sw,
+                            child: controller.listRecord.isNotEmpty
+                                ? ListView.builder(
+                                    itemCount: controller.listRecord.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        title: Text(controller
+                                                .listRecord[index]?.fullname ??
+                                            "no ktp"),
+                                        subtitle: Text(controller
+                                                .listRecord[index]
+                                                ?.fulladress ??
+                                            "no address"),
+                                        trailing: Text(controller
+                                                .listRecord[index]?.district ??
+                                            "no district"),
+                                      );
+                                    },
+                                  )
+                                : Center(
+                                    child: Text(
+                                    'No data',
+                                    style: AppStyle.textBig,
+                                  )),
+                          )),
                     ),
                     SizedBox(height: 0.04.sh),
                   ],

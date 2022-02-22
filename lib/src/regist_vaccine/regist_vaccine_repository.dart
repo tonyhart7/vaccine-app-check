@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
+import 'model/record_vaccine.dart';
+
 class RegistVaccineRepository {
   Future<AppErrorHandler?> createRecordVaccine(
     String fullnames,
@@ -29,6 +31,22 @@ class RegistVaccineRepository {
       }
     } on DioError catch (e) {
       return AppErrorHandler.fromMap(e.response?.data);
+    }
+  }
+
+  Future<List<VaccineData>?> getRecordVaccine() async {
+    try {
+      var response = await Dio().get(DataServices().baseUrl + "api/vaccine");
+      if (response.statusCode == 200) {
+        return response.data["data"].map<VaccineData>((json) {
+          return VaccineData.fromMap(json);
+        }).toList();
+      } else {
+        return null;
+      }
+    } on DioError catch (e) {
+      print(e.response?.statusMessage);
+      return null;
     }
   }
 }
