@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:vaccine/src/authentication/auth_controller.dart';
+import 'package:vaccine/src/regist_vaccine/model/record_vaccine.dart';
 import 'package:vaccine/src/regist_vaccine/model/regist_vaccine.dart';
 import 'package:vaccine/src/regist_vaccine/regist_vaccine_list.dart';
 import 'package:vaccine/src/regist_vaccine/regist_vaccine_repository.dart';
@@ -12,16 +13,14 @@ import 'package:vaccine/src/utils/app_utils.dart';
 class RegistController extends GetxController {
   final localRegist = Hive.box<RegistVaccine>(AppKey.localData);
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   AuthController get authCntrl => Get.find();
   bool isVaccinated = false;
 
+  RxList<RecordVaccine?> listRecord = <RecordVaccine?>[].obs;
+
   List<RegistVaccine> tmpList = [];
 
+  final fullnameText = TextEditingController();
   final passportText = TextEditingController();
   final stateText = TextEditingController();
   final cityText = TextEditingController();
@@ -29,7 +28,7 @@ class RegistController extends GetxController {
   // final countyText = TextEditingController();
   final fulladdressText = TextEditingController();
 
-  registVaccine(String id) {
+  registVaccine(BuildContext context) async {
     if (passportText.text.isEmpty) {
       Get.rawSnackbar(message: 'Nomor Tanda Penduduk tidak boleh kosong');
       return;
@@ -58,17 +57,32 @@ class RegistController extends GetxController {
       Get.rawSnackbar(message: 'Nomor tanda penduduk tidak valid');
       return;
     }
-
-    RegistVaccineRepository().registVaccine(
-      id,
+    AppErrorHandler? response =
+        await RegistVaccineRepository().createRecordVaccine(
+      fullnameText.text,
       passportText.text,
       stateText.text,
       cityText.text,
       districtText.text,
       fulladdressText.text,
     );
-    Get.rawSnackbar(message: 'Berhasil Daftar');
-    Get.off(() => const RegistVaccineList());
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(response!.message!, style: AppStyle.textBodyWhite),
+          backgroundColor: Colors.red,
+        ),
+      );
+    if (response.status == "success") {
+      fullnameText.clear();
+      passportText.clear();
+      stateText.clear();
+      cityText.clear();
+      districtText.clear();
+      fulladdressText.clear();
+      Get.off(() => const RegistVaccineList());
+    }
   }
 
   loadListRegist() {

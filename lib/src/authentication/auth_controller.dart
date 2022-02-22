@@ -39,6 +39,7 @@ class AuthController extends GetxController {
     if (response.status == "success") {
       profContrl.currendUserID = response.userID;
       Get.offAll(() => const HomeView(), binding: HomeBinding());
+      profContrl.getCurrentUser();
     }
   }
 

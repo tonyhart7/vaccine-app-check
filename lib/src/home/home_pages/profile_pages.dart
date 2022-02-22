@@ -14,7 +14,6 @@ class ProfileHomePages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    profContrl.getCurrentUser();
     return SizedBox.expand(
       child: Column(
         children: [

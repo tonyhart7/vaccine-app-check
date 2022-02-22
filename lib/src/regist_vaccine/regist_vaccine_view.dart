@@ -51,14 +51,12 @@ class RegistVaccinePage extends StatelessWidget {
                                 height: 0.06.sh,
                                 width: double.infinity,
                                 child: TextFormField(
-                                  initialValue: prof.currentUser.value?.names,
-                                  enabled: false,
-                                  keyboardType: TextInputType.none,
+                                  controller: controller.fullnameText,
+                                  keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.all(16.0),
                                     border: InputBorder.none,
                                     isDense: true,
-                                    // hintText: 'Example: andy@email.com',
                                   ),
                                 ),
                               ),
@@ -143,55 +141,36 @@ class RegistVaccinePage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 0.02.sh),
-                    // Card(
-                    //   color: Colors.grey[350],
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(10)),
-                    //   child: DropdownSearch<String>(
-                    //     mode: Mode.BOTTOM_SHEET,
-                    //     showSelectedItems: true,
-                    //     dropdownSearchDecoration: const InputDecoration(
-                    //       border: InputBorder.none,
-                    //       contentPadding: EdgeInsets.only(left: 16.0),
-                    //       hintText: 'Pilih Kecamatan',
-                    //     ),
-                    //     showSearchBox: true,
-                    //     items: districtList,
-                    //     onChanged: (value) {
-                    //       controller.districtText.text = value!;
-                    //       controller.update();
-                    //     },
-                    //   ),
-                    // ),
                     Column(
                       children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Kecamatan :',
-                              style: AppStyle.textBody,
-                            ),
-                          ),
-                        ),
+                        // Align(
+                        //   alignment: Alignment.centerLeft,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(8.0),
+                        //     child: Text(
+                        //       'Kecamatan :',
+                        //       style: AppStyle.textBody,
+                        //     ),
+                        //   ),
+                        // ),
                         Card(
                           color: Colors.grey[350],
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          child: SizedBox(
-                            height: 0.06.sh,
-                            width: double.infinity,
-                            child: TextFormField(
-                              controller: controller.districtText,
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(16.0),
-                                border: InputBorder.none,
-                                isDense: true,
-                                // hintText: 'Example: andy@email.com',
-                              ),
+                          child: DropdownSearch<String>(
+                            mode: Mode.BOTTOM_SHEET,
+                            showSelectedItems: true,
+                            dropdownSearchDecoration: const InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.only(left: 16.0),
+                              hintText: 'Pilih Kecamatan',
                             ),
+                            showSearchBox: true,
+                            items: kecamatan,
+                            onChanged: (value) {
+                              controller.districtText.text = value!;
+                              controller.update();
+                            },
                           ),
                         ),
                       ],
@@ -248,6 +227,7 @@ class RegistVaccinePage extends StatelessWidget {
                               if (!currentFocus.hasPrimaryFocus) {
                                 currentFocus.unfocus();
                               }
+                              controller.registVaccine(context);
                             },
                             // icon: SvgPicture.asset(
                             //     'assets/images/icons/AuthViewIcon/facebook.svg',
