@@ -50,81 +50,69 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                           borderRadius: BorderRadius.circular(18)),
                       height: 0.2.sh,
                       width: 0.9.sw,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            'Jumlah Penduduk di kelurahan',
-                            style: AppStyle.textSubTitle,
-                          ),
-                          Text(
-                            'Tercatat 1530 orang',
-                            style: AppStyle.textSubTitle,
-                          ),
-                          Row(
+                      child: Obx(() => Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                'Laki laki: 898',
+                                'Jumlah Penduduk di kelurahan',
                                 style: AppStyle.textSubTitle,
                               ),
                               Text(
-                                'Perempuan 632',
+                                'Tercatat ${controller.listRecord.length} orang',
                                 style: AppStyle.textSubTitle,
                               ),
                             ],
-                          )
-                        ],
-                      ),
+                          )),
                     ),
                     SizedBox(height: 0.04.sh),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Card(
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
-                          child: SizedBox(
-                            height: 0.15.sh,
-                            width: 0.4.sw,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Jumlah Terlapor',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                                Text(
-                                  'Tercatat: 500 orang',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
-                          child: SizedBox(
-                            height: 0.15.sh,
-                            width: 0.4.sw,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Jumlah Belum Terlapor',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                                Text(
-                                  'Tercatat: ${500 - controller.listRecord.length}',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      children: const [
+                        // Card(
+                        //   elevation: 8,
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(18)),
+                        //   child: SizedBox(
+                        //     height: 0.15.sh,
+                        //     width: 0.4.sw,
+                        //     child: Column(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //       children: [
+                        //         Text(
+                        //           'Jumlah Terlapor',
+                        //           style: AppStyle.textSubTitle,
+                        //         ),
+                        //         Text(
+                        //           'Tercatat: 500 orang',
+                        //           style: AppStyle.textSubTitle,
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        // Card(
+                        //   elevation: 8,
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(18)),
+                        //   child: SizedBox(
+                        //     height: 0.15.sh,
+                        //     width: 0.4.sw,
+                        //     child: Obx(() => Column(
+                        //           mainAxisAlignment:
+                        //               MainAxisAlignment.spaceEvenly,
+                        //           children: [
+                        //             Text(
+                        //               'Jumlah Belum Terlapor',
+                        //               style: AppStyle.textSubTitle,
+                        //             ),
+                        //             Text(
+                        //               'Tercatat: ${500 - controller.listRecord.length}',
+                        //               style: AppStyle.textSubTitle,
+                        //             ),
+                        //           ],
+                        //         )),
+                        //   ),
+                        // ),
                       ],
                     ),
                     Row(
@@ -137,19 +125,20 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                           child: SizedBox(
                             height: 0.15.sh,
                             width: 0.4.sw,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Jumlah yang sudah terlapor vaksin',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                                Text(
-                                  'Tercatat: ${controller.listRecord.length}',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                              ],
-                            ),
+                            child: Obx(() => Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'Jumlah yang sudah terlapor vaksin',
+                                      style: AppStyle.textSubTitle,
+                                    ),
+                                    Text(
+                                      'Tercatat: ${controller.listRecord.length}',
+                                      style: AppStyle.textSubTitle,
+                                    ),
+                                  ],
+                                )),
                           ),
                         ),
                         Card(
@@ -159,19 +148,20 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                           child: SizedBox(
                             height: 0.15.sh,
                             width: 0.4.sw,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Jumlah yang Belum Terlapor vaksin',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                                Text(
-                                  'Tercatat: 202 orang',
-                                  style: AppStyle.textSubTitle,
-                                ),
-                              ],
-                            ),
+                            child: Obx(() => Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      'Jumlah yang Belum Terlapor vaksin',
+                                      style: AppStyle.textSubTitle,
+                                    ),
+                                    Text(
+                                      'Tercatat: ${200 - controller.listRecord.length}',
+                                      style: AppStyle.textSubTitle,
+                                    ),
+                                  ],
+                                )),
                           ),
                         ),
                       ],

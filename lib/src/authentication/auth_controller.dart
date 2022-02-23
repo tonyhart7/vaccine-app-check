@@ -28,16 +28,8 @@ class AuthController extends GetxController {
 
     AppErrorHandler? response =
         await AuthRepository().loginUser(emailORNumber.text, passText.text);
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(response!.message!, style: AppStyle.textBodyWhite),
-          backgroundColor: Colors.red,
-        ),
-      );
-    if (response.status == "success") {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    if (response!.status == "success") {
       Get.offAll(() => const HomeView(), binding: HomeBinding());
       profContrl.getCurrentUser(response.userID.toString());
     }
