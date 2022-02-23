@@ -37,9 +37,9 @@ class AuthController extends GetxController {
         ),
       );
     if (response.status == "success") {
-      profContrl.currendUserID = response.userID;
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       Get.offAll(() => const HomeView(), binding: HomeBinding());
-      profContrl.getCurrentUser();
+      profContrl.getCurrentUser(response.userID.toString());
     }
   }
 

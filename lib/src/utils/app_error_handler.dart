@@ -4,6 +4,7 @@ class AppErrorHandler {
   String status;
   String? message;
   int? userID;
+
   AppErrorHandler({
     required this.status,
     this.message,
@@ -14,6 +15,7 @@ class AppErrorHandler {
     return {
       'status': status,
       'message': message,
+      'user_id': userID,
     };
   }
 

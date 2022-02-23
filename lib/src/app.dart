@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
                 onGenerateTitle: (BuildContext context) =>
                     AppLocalizations.of(context)!.appTitle,
                 theme: AppThemes.lightThemeData,
-                darkTheme: AppThemes.darkThemeData,
                 onGenerateRoute: AppRouter.routeGenerator,
               );
             },

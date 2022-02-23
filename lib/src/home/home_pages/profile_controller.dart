@@ -4,13 +4,12 @@ import 'package:vaccine/src/home/home_pages/profile_model.dart';
 import 'package:vaccine/src/utils/app_utils.dart';
 
 class ProfileController extends GetxController {
-  int? currendUserID;
   Rx<DataUser?> currentUser = Rx<DataUser?>(null);
 
-  getCurrentUser() async {
+  getCurrentUser(String userID) async {
     try {
-      var response = await Dio()
-          .get(DataServices().baseUrl + "api/user/" + currendUserID.toString());
+      var response =
+          await Dio().get(DataServices().baseUrl + "api/user/" + userID);
       if (response.statusCode == 200) {
         currentUser.value = DataUser.fromMap(response.data["data"]);
       } else {
