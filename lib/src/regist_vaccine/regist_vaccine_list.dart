@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -97,7 +96,7 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                                   style: AppStyle.textSubTitle,
                                 ),
                                 Text(
-                                  'Tercatat: 985 orang',
+                                  'Tercatat: 500 orang',
                                   style: AppStyle.textSubTitle,
                                 ),
                               ],
@@ -119,7 +118,7 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                                   style: AppStyle.textSubTitle,
                                 ),
                                 Text(
-                                  'Tercatat: 545 orang',
+                                  'Tercatat: ${500 - controller.listRecord.length}',
                                   style: AppStyle.textSubTitle,
                                 ),
                               ],
@@ -146,7 +145,7 @@ class _RegistVaccineListState extends State<RegistVaccineList> {
                                   style: AppStyle.textSubTitle,
                                 ),
                                 Text(
-                                  'Tercatat: 783 orang',
+                                  'Tercatat: ${controller.listRecord.length}',
                                   style: AppStyle.textSubTitle,
                                 ),
                               ],

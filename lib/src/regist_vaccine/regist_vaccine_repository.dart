@@ -44,8 +44,7 @@ class RegistVaccineRepository {
       } else {
         return null;
       }
-    } on DioError catch (e) {
-      print(e.response?.statusMessage);
+    } on DioError {
       return null;
     }
   }
